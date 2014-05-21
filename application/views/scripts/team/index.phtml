@@ -1,0 +1,54 @@
+<?php
+    $container = array(
+        array(
+            'label' => $this->translate('Show'),
+            'controller' => 'team',
+            'action' => 'show',
+            'resource' => 'team.show',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+//        array(
+//            'label' => $this->translate('Delete'),
+//            'controller' => 'user',
+//            'action' => 'delete',
+//            'resource' => 'user.delete',
+//            'class' => 'link1', // IMPORTANT!!
+//        ),
+    );
+    $container = new Zend_Navigation($container);
+//	echo $this->navigation()->menu()->setUlClass('static_buttons')->render($container);
+?>
+
+<a href="<?php echo $this->url(array('controller'=>'team','action'=>'add'))?>">Create new team</a>
+
+<?php
+	foreach ($this->data as $team) {?>
+		<div style="border:1px solid grey; margin-bottom: 10px;">
+			<div style="float:left;">
+				<p>
+					<span><?php echo $team->title; ?></span>
+					<span><?php echo 'sex icon:'.$team->sex; ?></span>
+				</p>
+				<p><?php echo $team->discipline; ?></p>
+				<p><?php echo $this->translate('Created at').': '.$team->created_at; ?></p>
+			</div>
+			<div style="float:right;">
+				<p><?php 
+					echo ($team->picture) ? '<img border="1" scr="'.$team->picture.'" alt="team picture" />':'<img border="1" scr="" alt="team picture" />'; ?>
+				</p>
+			</div>
+			<div class="clear"></div>
+			<div>
+				<?php
+					if ($container) {
+						foreach ($container->findAllBy('class', 'link1') as $page) {
+							if ($this->navigation()->menu()->accept($page,true)) {
+								echo $this->navigation()->menu()->htmlify($page->setParams(array('id' => Base_Convert::strToHex($team->id))));
+							}
+						}
+					}
+				?>
+			</div>
+		</div><?php 
+	}
+?>

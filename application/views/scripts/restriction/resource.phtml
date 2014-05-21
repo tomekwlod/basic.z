@@ -1,0 +1,31 @@
+<?php
+    $buttons = array();
+    $container = array(
+        array(
+            'label' => $this->translate('Edit'),
+            'controller' => 'restriction',
+            'action' => 'editresource',
+            'resource' => 'restriction.editresource',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Delete'),
+            'controller' => 'restriction',
+            'action' => 'deleteresource',
+            'resource' => 'restriction.deleteresource',
+            'class' => 'link1',
+        ),
+        array(
+            'label' => $this->translate('Add new resource'),
+            'controller' => 'restriction',
+            'action' => 'addresource',
+            'resource' => 'restriction.addresource',
+            'class' => 'link2',
+        ),
+    );
+    $container = new Zend_Navigation($container);
+    $this->container = $container; // WYSŁANIE BUTTONÓW DO TABLE GENERICA!!
+    unset($container);
+?>
+
+<?php echo $this->render('/_common/table_generic.phtml'); ?>

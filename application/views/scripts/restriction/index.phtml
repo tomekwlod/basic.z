@@ -1,0 +1,21 @@
+<?php
+    $container = array(
+//        array(
+//            'label' => $this->translate('Group'),
+//            'controller' => 'restriction',
+//            'action' => 'group',
+//            'resource' => 'restriction.group',
+//            'class' => 'link2',
+//        ),
+//        array(
+//            'label' => $this->translate('Link resource to group'),
+//            'controller' => 'restriction',
+//            'action' => 'linkresourcegroup',
+//            'resource' => 'restriction.linkresourcegroup',
+//            'class' => 'link2',
+//        ),
+    );
+    $container = new Zend_Navigation($container);
+    
+    echo $this->navigation()->menu()->setUlClass('static_buttons')->render($container); 
+?>

@@ -1,0 +1,13 @@
+<?php
+    if (count($this->data)) {
+        echo '<table class = "generic_table"><tr class="tr_header">';
+        foreach ($this->data as $key=>$row) {
+            echo '<td>'.$this->translate($key).'</td>';
+        } 
+        echo '</tr><tr>';
+        foreach ($this->data as $key=>$row) {
+            echo '<td>'.$row.'</td>';
+        }
+        echo '</tr></table>';
+    }
+?>

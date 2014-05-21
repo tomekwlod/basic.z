@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: tomek\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Home"
+msgstr "Strona główna"
+
+msgid "Users"
+msgstr "Użytkownicy"
+
+msgid "Auth"
+msgstr "Autoryzacja"
+
+msgid "Roles"
+msgstr "Role"
+
+msgid "Resources"
+msgstr "Zasoby"
+
+msgid "Resource %1$s already exist"
+msgstr "Zasób %1$s już istnieje"
+
+msgid "Resource %1$s added successfully"
+msgstr "Zasób %1$s dodany prawidłowo"
+

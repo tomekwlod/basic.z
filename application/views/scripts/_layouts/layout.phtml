@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="pl">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="/static/images/favicon.ico" />
+        
+        <?php echo $this->doctype('XHTML5'); ?>
+        <?php
+            $config = Zend_Registry::get('config');
+
+            $this->headTitle()->prepend($this->translate('SPORT'));
+//            $this->headTitle()->setSeparator(' - ');
+//            $this->headTitle()->append($this->title);
+            foreach ($config['general']['styles'] as $style)
+                $this->headLink()->appendStylesheet($style);
+
+            foreach ($config['general']['scripts'] as $script)
+                $this->headScript()->appendFile($script);
+
+            echo $this->headTitle();
+            echo $this->headMeta();
+            echo $this->headScript();
+            echo $this->headLink();
+        ?>
+</head>
+<body>
+    <?php //echo strtoupper($this->title); ?>
+    <div id="menu">
+        <?php
+            echo $this->navigation()
+                ->menu()
+                ->setUlClass('navigation')
+                ->setMaxDepth(0)
+                ->setRenderParents(false);
+            
+            echo $this->navigation()
+				->menu()
+				->setUlClass('sub1_navigation')
+                ->setMinDepth(1)
+                ->setMaxDepth(1)
+                ->setOnlyActiveBranch(true)
+                ->setRenderParents(false);
+            
+            echo $this->navigation()
+				->menu()
+				->setUlClass('sub2_navigation')
+                ->setMinDepth(2)
+                ->setMaxDepth(2)
+                ->setOnlyActiveBranch(true)
+                ->setRenderParents(false);
+            
+            echo $this->navigation()
+				->menu()
+				->setUlClass('sub3_navigation')
+                ->setMinDepth(3)
+                ->setMaxDepth(3)
+                ->setOnlyActiveBranch(true)
+                ->setRenderParents(false);
+        ?>
+    </div>
+    <div id="breadcrumps">
+        <?php echo $this->navigation()
+                ->breadcrumbs()
+                ->setMinDepth(1)
+                ->setSeparator(' &#9655;' . PHP_EOL);
+        ?>
+    </div>
+    <div id="flash_messages">
+        <?php echo $this->messenger(); ?>
+    </div>
+    <div id="content">
+        <?php echo $this->layout()->content; ?>
+    </div>
+    <div id="footer">
+        <?php ?>
+    </div>
+</body>
+</html>

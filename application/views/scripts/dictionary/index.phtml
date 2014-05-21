@@ -1,0 +1,43 @@
+<?php
+    $container = array(
+        array(
+            'label' => $this->translate('Add dictionary'),
+            'controller' => 'dictionary',
+            'action' => 'add',
+            'resource' => 'dictionary.add',
+            'class' => 'link2', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Edit'),
+            'controller' => 'dictionary',
+            'action' => 'edit',
+            'resource' => 'dictionary.edit',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Show'),
+            'controller' => 'dictionary',
+            'action' => 'show',
+            'resource' => 'dictionary.show',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Delete'),
+            'controller' => 'dictionary',
+            'action' => 'delete',
+            'resource' => 'dictionary.delete',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Undelete'),
+            'controller' => 'dictionary',
+            'action' => 'undelete',
+            'resource' => 'dictionary.undelete',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+    );
+    $container = new Zend_Navigation($container);
+    $this->container = $container;
+?>
+
+<?php echo $this->render('/_common/table_generic.phtml'); ?>

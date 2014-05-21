@@ -1,0 +1,18 @@
+<?php
+    if(isset($this->errorMessage)) echo $this->errorMessage;
+    echo $this->form;
+    $container = array(
+        array(
+            'label' => $this->translate('Click here to signup.'), /** @todo: chyba nie trzeba tłumaczyć - tłumaczone z automatu */
+            'controller' => 'auth',
+            'action' => 'signup',
+            'resource' => 'auth.signup',
+            'class' => 'link2', // IMPORTANT!!
+        ),
+    );
+    $container = new Zend_Navigation($container);
+    echo $this->navigation()
+            ->menu()
+            ->setUlClass('simple_navigation')
+            ->render($container);
+?>

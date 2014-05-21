@@ -1,0 +1,50 @@
+<?php
+    $container = array(
+        array(
+            'label' => $this->translate('Edit'),
+            'controller' => 'user',
+            'action' => 'edit',
+            'resource' => 'user.edit',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Show'),
+            'controller' => 'user',
+            'action' => 'show',
+            'resource' => 'user.show',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Lock'),
+            'controller' => 'user',
+            'action' => 'lock',
+            'resource' => 'user.lock',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Unlock'),
+            'controller' => 'user',
+            'action' => 'unlock',
+            'resource' => 'user.unlock',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Delete'),
+            'controller' => 'user',
+            'action' => 'delete',
+            'resource' => 'user.delete',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Undelete'),
+            'controller' => 'user',
+            'action' => 'undelete',
+            'resource' => 'user.undelete',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+    );
+    $container = new Zend_Navigation($container);
+    $this->container = $container;
+?>
+
+<?php echo $this->render('/_common/table_generic.phtml'); ?>

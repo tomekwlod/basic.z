@@ -1,0 +1,31 @@
+<?php if ($this->choose_type) { ?>
+    <table id="table_signup">
+        <tr>
+            <td>
+                <a title="<?php echo $this->translate('Log in using Your account.'); ?>" href="<?php echo $this->url(array('controller'=>'auth','action'=>'login'), 'default', true); ?>">
+                    <?php echo $this->translate('I have an account and I want to log in.'); ?>
+                </a>
+            </td>
+            <td>
+                <a title="<?php echo $this->translate('Create new account.'); ?>" href="<?php echo $this->url(array('controller'=>'auth','action'=>'signup','type' => Base_Convert::strToHex('Self')), 'default', true); ?>">
+                    <?php echo $this->translate('I want to create new account.'); ?>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a title="<?php echo $this->translate('Use Your Facebook account to register.'); ?>" href="<?php echo $this->url(array('controller'=>'auth','action'=>'signup','type' => Base_Convert::strToHex('FB')), 'default', true); ?>">
+                    <?php echo $this->translate('I have account on Facebook and I want to use it.'); ?>
+                </a>
+            </td>
+            <td>
+                <a title="<?php echo $this->translate('Use Your Google account to register.'); ?>" href="<?php echo $this->url(array('controller'=>'auth','action'=>'signup','type' => Base_Convert::strToHex('GM')), 'default', true); ?>">
+                    <?php echo $this->translate('I have account on Google and I want to use it.'); ?>
+                </a>
+            </td>
+        </tr>
+    </table>
+<?php } ?>
+
+
+<?php echo $this->form;?>

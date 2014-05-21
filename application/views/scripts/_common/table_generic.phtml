@@ -1,0 +1,79 @@
+<?php
+    $header = $this->header;
+    $paginator = $this->paginator;
+    $container = $this->container;
+    unset($this->header,$this->paginator,$this->container);
+    
+    if (count($paginator->getCurrentItems())) {
+
+        echo '<table class = "generic_table">';
+        $this->cycle()->assign(array("odd","even"));
+        foreach ($paginator->getCurrentItems() as $key => $row) {
+            // headers
+            if ($key == 0) {
+                echo '<tr class = "tr_header">';
+                    echo '<td>'.$this->translate('No.').'</td>';
+                    foreach ($row as $k=>$r) {
+                        if (isset($header)) {
+                            if (in_array($k, $header)) {
+                                echo '<td>'.$this->translate($k).'</td>';
+                            }
+                        } else {
+                            echo '<td>'.$this->translate($k).'</td>';
+                        }
+                    }
+                    if ($container)
+                        echo '<td>'.$this->translate('Additional actions').'</td>';
+                echo '</tr>';
+            }
+            
+            $class = '';
+            if (isset($row['ghost']))
+                if ($row['ghost'])
+                    $class .= 'tr_ghost ';
+            if (isset($row['locked']))
+                if ($row['locked'])
+                    $class .= 'tr_locked ';
+
+            //data
+            echo '<tr class = "'.$this->cycle()->next().' '.$class.'">';
+                echo '<td>'.(($paginator->getCurrentPageNumber()-1)*$paginator->getItemCountPerPage() + ($key+1)).'</td>';
+                foreach ($row as $k=>$r) {
+                    if (isset($header)) {
+                        if (in_array($k, $header)) {
+                            echo '<td>'.$this->DictMap($row,$k).'</td>';
+                        }
+                    } else {
+                        echo '<td>'.$this->DictMap($row,$k).'</td>';
+                    }
+                }
+                // dynamic buttons
+                if ($container) {
+                    echo '<td>';
+                        foreach ($container->findAllBy('class', 'link1') as $page) {
+                            if ($this->navigation()->menu()->accept($page,true)) {
+                                if (
+                                        ($page->getAction() == 'delete' && $row['ghost']) || ($page->getAction() == 'undelete' && !$row['ghost'])
+                                        ||
+                                        ($page->getAction() == 'lock' && $row['locked']) || ($page->getAction() == 'unlock' && !$row['locked']) ) {
+                                    echo '';
+                                } else
+                                    echo $this->navigation()->menu()->htmlify($page->setParams(array('id' => Base_Convert::strToHex($row['id']))));
+                            }
+                        }
+                    echo '</td>';
+                }
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo $this->paginationControl($paginator, 'Sliding', '_common/paginator.phtml'); //elastic, sliding, jumping, all
+    }
+    // static buttons
+    if ($container) {
+        foreach ($container->findAllBy('class', 'link2') as $page) {
+            if ($this->navigation()->menu()->accept($page,true)) { // do samego $this->navigation()->menu()->render() nie trzeba sprawdzać aclki
+                echo $this->navigation()->menu()->htmlify($page); // do $this->navigation()->menu()->htmlify() trzeba sprawdzić acl
+            }
+        }
+    }
+?>

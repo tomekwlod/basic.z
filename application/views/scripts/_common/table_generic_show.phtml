@@ -1,0 +1,23 @@
+<?php
+    $data = $this->data;
+    $header = $this->header;
+    unset($this->data,$this->header);
+
+    if (count($data)) {
+        echo '<table class = "generic_table_show">';
+        foreach ($data as $key=>$row) {
+            echo '<tr>';
+            if (isset($header)) {
+                if (in_array($key,$header)) {
+                    echo '<td class = "td_header">'.$this->translate($key).'</td>';
+                    echo '<td>'.$this->DictMap($data, $key).'</td>';
+                }
+            } else {
+                echo '<td class = "td_header">'.$this->translate($key).'</td>';
+                echo '<td>'.$this->DictMap($data, $key).'</td>';
+            }
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+?>

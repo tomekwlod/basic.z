@@ -1,0 +1,45 @@
+<?php if ($this->pageCount) { ?>
+    <div class="pagination_control">
+        <?php
+            // FIRST PAGE
+            if (isset($this->previous)) {
+                echo '<a href="'.$this->url(array('page' => $this->first)).'">'." << ".'</a> ';
+            } else {
+                echo " << ";
+            }
+
+            // PREVIOUS PAGE
+            if (isset($this->previous)) {
+                echo '<a href="'.$this->url(array('page' => $this->previous)).'">'.$this->translate('Previous').'</a> | ';
+            } else {
+                echo $this->translate('Previous').' | ';
+            }
+
+            // PAGE NUMBERS
+            foreach ($this->pagesInRange as $page) {
+                if ($page != $this->current) {
+                    echo '<a href="'.$this->url(array('page' => $page)).'">'.$page.'</a> | ';
+                } else {
+                    echo $page.' | ';
+                }
+            }
+
+            // NEXT PAGE
+            if (isset($this->next)) {
+                echo '<a href="'.$this->url(array('page' => $this->next)).'">'.$this->translate('Next').'</a> ';
+            } else {
+                echo $this->translate('Next').' ';
+            }
+
+            // LAST PAGE
+            if (isset($this->next)) {
+                echo ' <a href="'.$this->url(array('page' => $this->last)).'">'.">>".'</a> ';
+            } else {
+                echo " >> ";
+            }
+
+            // TOTAL ITEM COUNT
+            echo ' '.$this->translate('Total items:').' '.$this->totalItemCount;
+        ?>
+    </div>
+<?php } ?>

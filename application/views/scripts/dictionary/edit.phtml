@@ -1,0 +1,26 @@
+<?php echo $this->form; ?>
+<?php
+    $container = array(
+        array(
+            'label' => $this->translate('Delete'),
+            'controller' => 'dictionary',
+            'action' => 'entrydelete',
+            'resource' => 'dictionary.entrydelete',
+            'class' => 'link1', // IMPORTANT!!
+        ),
+        array(
+            'label' => $this->translate('Add dictionary entry'),
+            'controller' => 'dictionary',
+            'action' => 'entryadd',
+            'resource' => 'dictionary.entryadd',
+            'params' => array(
+                'id' => $this->dictionary_id
+            ),
+            'class' => 'link2', // IMPORTANT!!
+        ),
+    );
+    $container = new Zend_Navigation($container);
+    $this->container = $container;
+
+    echo $this->render('/_common/table_generic.phtml');
+?>

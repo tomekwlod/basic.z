@@ -1,0 +1,19 @@
+<?php 
+
+echo $this->render('/_common/table_generic_show.phtml');
+
+    $container = array(
+//        array(
+//            'label' => $this->translate('Show'),
+//            'controller' => 'dictionary',
+//            'action' => 'show',
+//            'resource' => 'dictionary.show',
+//            'class' => 'link1', // IMPORTANT!!
+//        ),
+    );
+    $container = new Zend_Navigation($container);
+    $this->container = $container;
+
+    echo $this->partial('/_common/table_generic.phtml', array('paginator' => $this->paginator, 'header' => $this->paginator_header)); 
+
+?>
